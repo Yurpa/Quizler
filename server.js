@@ -78,12 +78,20 @@ app.use('/api/admin',       adminRoutes);
 app.use(express.static(path.join(__dirname, 'public')));
 
 // All non-API routes return index.html (allows direct URL access)
+// ── Static frontend ───────────────────────────────────────────
+app.use(express.static(path.join(dirname, 'public')));
+
+// SPA fallback: only for non-API, non-.html paths
 app.get('*', (req, res) => {
-  if (!req.path.startsWith('/api')) {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
-  } else {
-    res.status(404).json({ error: 'API route not found.' });
+  if (req.path.startsWith('/api')) {
+    return res.status(404).json({ error: 'API route not found.' });
   }
+  // If the path looks like a real file (has an extension), don't override it
+  if (path.extname(req.path)) {
+    return res.status(404).send('Not found.');
+  }
+  // True SPA fallback for extensionless routes
+  res.sendFile(path.join(dirname, 'public', 'index.html'));
 });
 
 // ── Global error handler ──────────────────────────────────────
