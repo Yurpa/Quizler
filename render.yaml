@@ -32,7 +32,7 @@ services:
 
   # ── Managed PostgreSQL ────────────────────────────────────
 databases:
-  - name: quizler-db
+  - name: quiz-db
     plan: free                     # Free tier: 90-day expiry, 256 MB storage
-    databaseName: quizler
-    user: quizler_user
+    databaseName: quiz_db_orv4
+    user: quiz_db_orv4_user
