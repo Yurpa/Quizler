@@ -23,6 +23,9 @@ function quizCardHTML(q, completedIds) {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
+  
+  document.getElementById('top-login-btn').addEventListener('click', () => Nav.topBarClick());
+  document.getElementById('nav-account').addEventListener('click', () => Nav.navAccount());
   await Nav.init();
 
   const grid = document.getElementById('home-latest-quizzes');
@@ -39,4 +42,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   } catch {
     grid.innerHTML = '<div style="color:var(--red);padding:12px">Failed to load quizzes.</div>';
   }
-});
+}
+
+);

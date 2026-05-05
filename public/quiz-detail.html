@@ -13,7 +13,7 @@
 
 <!-- TOP BAR -->
 <div class="top-bar">
-  <button class="top-bar-btn" id="top-login-btn" onclick="Nav.topBarClick()">
+  <button class="top-bar-btn" id="top-login-btn">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
       <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
       <circle cx="12" cy="7" r="4"/>
@@ -33,9 +33,9 @@
   </a>
   <ul class="nav-links">
     <li><a class="nav-link" id="nav-leaderboards" href="leaderboards.html">Leaderboards</a></li>
-    <li><a class="nav-link" id="nav-account" href="javascript:void(0)" onclick="Nav.navAccount()">My Account</a></li>
+    <li><a class="nav-link" id="nav-account" href="javascript:void(0)">My Account</a></li>
     <li style="position:relative">
-      <div class="nav-link" id="nav-quizzes" onclick="Nav.toggleDropdown()">
+      <div class="nav-link" id="nav-quizzes">
         Quizzes
         <svg viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 1l5 5 5-5"/></svg>
       </div>
@@ -66,7 +66,7 @@
         </div>
         <div class="qd-name" id="qd-name"></div>
         <div class="qd-desc" id="qd-desc"></div>
-        <button class="btn btn-primary btn-lg" onclick="startQuiz()">Play</button>
+        <button class="btn btn-primary btn-lg" id="play-btn">Play</button>
       </div>
       <div class="qd-img">Optional Image<br>for the Quiz</div>
     </div>

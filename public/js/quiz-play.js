@@ -211,4 +211,8 @@ function reviewNext() {
 document.addEventListener('DOMContentLoaded', async () => {
   await Nav.init();
   initQuiz();
+  document.getElementById('qp-continue-btn')?.addEventListener('click', () => continueQuiz());
+  document.getElementById('review-prev-btn')?.addEventListener('click', () => reviewPrev());
+  document.getElementById('review-next-btn')?.addEventListener('click', () => reviewNext());
+  document.querySelector('#completion-modal .btn-outline')?.addEventListener('click', () => openReview());
 });

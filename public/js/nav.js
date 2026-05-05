@@ -95,3 +95,10 @@ document.addEventListener('click', e => {
     Nav.closeDropdown();
   }
 });
+
+// Wire up shared nav buttons after the DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('top-login-btn')?.addEventListener('click', () => Nav.topBarClick());
+  document.getElementById('nav-account')?.addEventListener('click', () => Nav.navAccount());
+  document.getElementById('nav-quizzes')?.addEventListener('click', () => Nav.toggleDropdown());
+});

@@ -157,6 +157,20 @@ function lbTab(el, panelId) {
 // ── Boot ─────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', async () => {
   await Nav.init();
+
+  // Wire up tab buttons
+  const tabs = document.querySelectorAll('.lb-tab');
+  const panels = ['lb-global', 'lb-categories', 'lb-individual'];
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => lbTab(tab, panels[i]));
+  });
+
+  // Wire up carousel buttons
+  document.getElementById('cat-prev-btn')?.addEventListener('click', () => carouselPrev('cat'));
+  document.getElementById('cat-next-btn')?.addEventListener('click', () => carouselNext('cat'));
+  document.getElementById('quiz-prev-btn')?.addEventListener('click', () => carouselPrev('quiz'));
+  document.getElementById('quiz-next-btn')?.addEventListener('click', () => carouselNext('quiz'));
+
   try {
     [_categories, _quizzes] = await Promise.all([API.getCategories(), API.getQuizzes()]);
   } catch { /* carousels stay empty */ }

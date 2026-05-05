@@ -13,7 +13,7 @@
 
 <!-- TOP BAR -->
 <div class="top-bar">
-  <button class="top-bar-btn" id="top-login-btn" onclick="Nav.topBarClick()">
+  <button class="top-bar-btn" id="top-login-btn">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
       <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
       <circle cx="12" cy="7" r="4"/>
@@ -33,9 +33,9 @@
   </a>
   <ul class="nav-links">
     <li><a class="nav-link" id="nav-leaderboards" href="leaderboards.html">Leaderboards</a></li>
-    <li><a class="nav-link" id="nav-account" href="javascript:void(0)" onclick="Nav.navAccount()">My Account</a></li>
+    <li><a class="nav-link" id="nav-account" href="javascript:void(0)">My Account</a></li>
     <li style="position:relative">
-      <div class="nav-link" id="nav-quizzes" onclick="Nav.toggleDropdown()">
+      <div class="nav-link" id="nav-quizzes">
         Quizzes
         <svg viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 1l5 5 5-5"/></svg>
       </div>
@@ -57,7 +57,7 @@
     <div class="account-sidebar">
 
       <div class="acct-sec">
-        <div class="acct-sec-hdr open" onclick="toggleAcctSection(this)">
+        <div class="acct-sec-hdr open">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
             <circle cx="12" cy="7" r="4"/>
@@ -66,13 +66,13 @@
           <span class="acct-sec-chevron">&#8963;</span>
         </div>
         <div class="acct-sec-items">
-          <div class="acct-item active" onclick="acctPanel(this,'panel-main')">Main Information</div>
-          <div class="acct-item"        onclick="acctPanel(this,'panel-stats')">Statistics</div>
+          <div class="acct-item active">Main Information</div>
+          <div class="acct-item"       >Statistics</div>
         </div>
       </div>
 
       <div class="acct-sec">
-        <div class="acct-sec-hdr open" onclick="toggleAcctSection(this)">
+        <div class="acct-sec-hdr open">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
           </svg>
@@ -80,12 +80,12 @@
           <span class="acct-sec-chevron">&#8963;</span>
         </div>
         <div class="acct-sec-items">
-          <div class="acct-item" onclick="acctPanel(this,'panel-security')">Login and Security</div>
+          <div class="acct-item">Login and Security</div>
         </div>
       </div>
 
       <div class="acct-sec">
-        <div class="acct-sec-hdr open" onclick="toggleAcctSection(this)">
+        <div class="acct-sec-hdr open">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <rect x="3" y="3" width="18" height="18" rx="2"/>
             <path d="M3 9h18M9 21V9"/>
@@ -94,13 +94,13 @@
           <span class="acct-sec-chevron">&#8963;</span>
         </div>
         <div class="acct-sec-items">
-          <div class="acct-item" onclick="acctPanel(this,'panel-history')">View History</div>
+          <div class="acct-item">View History</div>
         </div>
       </div>
 
       <!-- Log out -->
       <div style="padding:24px 22px 8px;">
-        <button class="btn btn-danger btn-full" onclick="Auth.doLogout()">
+        <button class="btn btn-danger btn-full">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
             <polyline points="16 17 21 12 16 7"/>
@@ -125,7 +125,7 @@
         <input class="acct-input" id="acct-email"    type="email" placeholder="Email">
         <input class="acct-input" id="acct-username" type="text"  placeholder="Username">
         <div class="acct-user-type" id="acct-user-type">User Type: Player</div>
-        <button class="btn btn-outline" onclick="saveMainInfo()">Save Changes</button>
+        <button class="btn btn-outline">Save Changes</button>
       </div>
 
       <!-- Statistics -->
@@ -162,7 +162,7 @@
         <div class="acct-field-label">Confirm New Password</div>
         <input class="acct-input" id="sec-conf-pass" type="password" placeholder="Repeat new password">
         <div style="margin-top:8px;">
-          <button class="btn btn-outline" onclick="savePassword()">Save Changes</button>
+          <button class="btn btn-outline">Save Changes</button>
         </div>
       </div>
 
@@ -175,10 +175,10 @@
         <table class="hist-table">
           <thead>
             <tr>
-              <th id="th-quiz"     onclick="sortHistory('quiz')">     Quiz     <span class="sort-arrow">⇅</span></th>
-              <th id="th-category" onclick="sortHistory('category')"> Category <span class="sort-arrow">⇅</span></th>
-              <th id="th-score"    onclick="sortHistory('score')">    Score    <span class="sort-arrow">⇅</span></th>
-              <th id="th-date"     onclick="sortHistory('date')">     Date     <span class="sort-arrow">▼</span></th>
+              <th id="th-quiz"    >     Quiz     <span class="sort-arrow">⇅</span></th>
+              <th id="th-category"> Category <span class="sort-arrow">⇅</span></th>
+              <th id="th-score"   >    Score    <span class="sort-arrow">⇅</span></th>
+              <th id="th-date"    >     Date     <span class="sort-arrow">▼</span></th>
             </tr>
           </thead>
           <tbody id="hist-body"></tbody>

@@ -149,4 +149,35 @@ async function savePassword() {
 document.addEventListener('DOMContentLoaded', async () => {
   await Nav.init();
   await loadAccountPage();
+
+  // Log out button
+  document.querySelector('.btn-danger')?.addEventListener('click', () => Auth.doLogout());
+
+  // Sidebar section toggles
+  document.querySelectorAll('.acct-sec-hdr').forEach(hdr => {
+    hdr.addEventListener('click', () => toggleAcctSection(hdr));
+  });
+
+  // Sidebar panel items
+  const panelMap = {
+    'panel-main':     0,
+    'panel-stats':    1,
+    'panel-security': 2,
+    'panel-history':  3,
+  };
+  document.querySelectorAll('.acct-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const panelId = item.getAttribute('data-panel');
+      if (panelId) acctPanel(item, panelId);
+    });
+  });
+
+  // Save buttons
+  document.getElementById('save-main-btn')?.addEventListener('click', () => saveMainInfo());
+  document.getElementById('save-password-btn')?.addEventListener('click', () => savePassword());
+
+  // History sort headers
+  ['quiz', 'category', 'score', 'date'].forEach(field => {
+    document.getElementById('th-' + field)?.addEventListener('click', () => sortHistory(field));
+  });
 });

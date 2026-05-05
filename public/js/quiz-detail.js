@@ -73,4 +73,6 @@ function startQuiz() {
 document.addEventListener('DOMContentLoaded', async () => {
   await Nav.init();
   await loadQuizDetail();
+  // Wire up Play button only after the quiz data is ready
+  document.getElementById('play-btn')?.addEventListener('click', startQuiz);
 });
