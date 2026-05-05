@@ -217,18 +217,17 @@ CREATE INDEX idx_global_lb_points ON global_leaderboard(total_points DESC);
 --    REQ 6.1 — separate leaderboard per category.
 -- ============================================================
 
-CREATE VIEW Category_Leaderboards AS
-SELECT 
-    u.id AS user_id,
-    u.username,
-    q.category,
-    SUM(qa.score) AS total_score,
-    COUNT(qa.id) AS quizzes_completed
-FROM Users u
-JOIN Quiz_Attempts qa ON u.id = qa.user_id
-JOIN Quizzes q ON qa.quiz_id = q.id
-GROUP BY u.id, u.username, q.category
-ORDER BY total_score DESC;
+CREATE TABLE category_leaderboards (
+    id           SERIAL    PRIMARY KEY,
+    category_id  INTEGER   NOT NULL
+                     REFERENCES categories(id) ON DELETE CASCADE,
+    user_id      INTEGER   NOT NULL
+                     REFERENCES users(id)      ON DELETE CASCADE,
+    total_points INTEGER   NOT NULL DEFAULT 0
+                     CHECK (total_points >= 0),
+    rank         INTEGER,
+    UNIQUE (category_id, user_id)
+);
 
 COMMENT ON TABLE category_leaderboards IS 'Per-category user rankings. REQ 6.1.';
 CREATE INDEX idx_cat_lb_category ON category_leaderboards(category_id, total_points DESC);
