@@ -79,14 +79,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // All non-API routes return index.html (allows direct URL access)
 // ── Static frontend ───────────────────────────────────────────
-app.use(express.static(path.join(dirname, 'public')));
-
-// SPA fallback: only for non-API, non-.html paths
 app.use(express.static(path.resolve('public')));
-
-// SPA fallback
-app.use(express.static(path.resolve('public')));
-
 // SPA fallback
 app.get('*', (req, res) => {
   if (req.path.startsWith('/api')) {
