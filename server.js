@@ -72,6 +72,8 @@ app.use('/api',             quizRoutes);
 app.use('/api/leaderboard', leaderboardRoutes);
 app.use('/api/profile',     profileRoutes);
 app.use('/api/admin',       adminRoutes);
+app.get('/api/health', (_req, res) => res.json({ status: 'ok' }));
+
 
 // ── Static frontend ───────────────────────────────────────────
 app.use(express.static(path.join(__dirname, 'public')));
