@@ -66,8 +66,8 @@
           <span class="acct-sec-chevron">&#8963;</span>
         </div>
         <div class="acct-sec-items">
-          <div class="acct-item active">Main Information</div>
-          <div class="acct-item"       >Statistics</div>
+          <div class="acct-item active" data-panel="panel-main">Main Information</div>
+          <div class="acct-item"        data-panel="panel-stats">Statistics</div>
         </div>
       </div>
 
@@ -80,7 +80,7 @@
           <span class="acct-sec-chevron">&#8963;</span>
         </div>
         <div class="acct-sec-items">
-          <div class="acct-item">Login and Security</div>
+          <div class="acct-item" data-panel="panel-security">Login and Security</div>
         </div>
       </div>
 
@@ -94,7 +94,7 @@
           <span class="acct-sec-chevron">&#8963;</span>
         </div>
         <div class="acct-sec-items">
-          <div class="acct-item">View History</div>
+          <div class="acct-item" data-panel="panel-history">View History</div>
         </div>
       </div>
 
@@ -125,10 +125,9 @@
         <input class="acct-input" id="acct-email"    type="email" placeholder="Email">
         <input class="acct-input" id="acct-username" type="text"  placeholder="Username">
         <div class="acct-user-type" id="acct-user-type">User Type: Player</div>
-        <button class="btn btn-outline">Save Changes</button>
-      </div>
+        <button class="btn btn-outline" id="save-main-btn">Save Changes</button>
+      </div><!-- /panel-main -->
 
-      <!-- Statistics -->
       <div class="acct-panel" id="panel-stats">
         <div class="acct-panel-title">Statistics</div>
         <div class="acct-stats">
@@ -162,7 +161,7 @@
         <div class="acct-field-label">Confirm New Password</div>
         <input class="acct-input" id="sec-conf-pass" type="password" placeholder="Repeat new password">
         <div style="margin-top:8px;">
-          <button class="btn btn-outline">Save Changes</button>
+          <button class="btn btn-outline" id="save-password-btn">Save Changes</button>
         </div>
       </div>
 

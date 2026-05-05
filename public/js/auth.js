@@ -41,10 +41,12 @@ const Auth = {
     }
 
     try {
-      await API.register(email, uname, pw);
-      ok.textContent = 'Account created! Redirecting to login…';
+      const data = await API.register(email, uname, pw);
+      State.token       = data.token;
+      State.currentUser = data.user;
+      ok.textContent = 'Account created! Redirecting…';
       ok.classList.add('show');
-      setTimeout(() => window.location.href = 'login.html', 1600);
+      setTimeout(() => window.location.href = 'index.html', 1600);
     } catch (e) {
       err.textContent = e.message;
       err.classList.add('show');
@@ -61,9 +63,12 @@ const Auth = {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('login-btn')?.addEventListener('click', () => Auth.doLogin());
   document.getElementById('login-password')?.addEventListener('keydown', e => {
     if (e.key === 'Enter') Auth.doLogin();
   });
+
+  document.getElementById('register-btn')?.addEventListener('click', () => Auth.doRegister());
   document.getElementById('reg-pass2')?.addEventListener('keydown', e => {
     if (e.key === 'Enter') Auth.doRegister();
   });

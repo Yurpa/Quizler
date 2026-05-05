@@ -13,7 +13,7 @@
 
 <!-- TOP BAR -->
 <div class="top-bar">
-  <button class="top-bar-btn" id="top-login-btn" onclick="Nav.topBarClick()">
+  <button class="top-bar-btn" id="top-login-btn">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
       <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
       <circle cx="12" cy="7" r="4"/>
@@ -33,9 +33,9 @@
   </a>
   <ul class="nav-links">
     <li><a class="nav-link" id="nav-leaderboards" href="leaderboards.html">Leaderboards</a></li>
-    <li><a class="nav-link" id="nav-account" href="javascript:void(0)" onclick="Nav.navAccount()">My Account</a></li>
+    <li><a class="nav-link" id="nav-account" href="javascript:void(0)">My Account</a></li>
     <li style="position:relative">
-      <div class="nav-link" id="nav-quizzes" onclick="Nav.toggleDropdown()">
+      <div class="nav-link" id="nav-quizzes">
         Quizzes
         <svg viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 1l5 5 5-5"/></svg>
       </div>
@@ -71,11 +71,11 @@
       <div class="qp-right">
         <div class="qp-timer" id="qp-timer">Time Left: 01:00</div>
         <!-- Play mode: Continue / Submit -->
-        <button class="btn btn-primary btn-lg" id="qp-continue-btn" onclick="continueQuiz()">Continue</button>
+        <button class="btn btn-primary btn-lg" id="qp-continue-btn">Continue</button>
         <!-- Review mode: Prev / Next (hidden during play) -->
         <div id="qp-review-nav" class="hidden" style="display:flex;flex-direction:column;gap:10px;align-items:flex-end;">
-          <button class="btn btn-outline" id="review-prev-btn" onclick="reviewPrev()">← Prev</button>
-          <button class="btn btn-primary" id="review-next-btn" onclick="reviewNext()">Next →</button>
+          <button class="btn btn-outline" id="review-prev-btn">← Prev</button>
+          <button class="btn btn-primary" id="review-next-btn">Next →</button>
         </div>
       </div>
     </div>
@@ -99,7 +99,7 @@
     <div class="modal-score-lbl">Your final score is:</div>
     <div class="modal-score-val" id="modal-score"></div>
     <div class="modal-actions">
-      <button class="btn btn-outline btn-lg" onclick="openReview()">Review Answers</button>
+      <button class="btn btn-outline btn-lg" id="modal-review-btn">Review Answers</button>
       <a      class="btn btn-primary btn-lg" href="index.html">Go Home</a>
     </div>
   </div>

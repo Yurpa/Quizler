@@ -48,12 +48,18 @@ function renderOptions(q, userAnswer, coloured) {
       if (i === q.correct)                          cls += ' correct';
       else if (i === userAnswer && i !== q.correct) cls += ' wrong';
     }
-    const handler = coloured ? '' : `onclick="selectOption(${i})"`;
-    return `<div class="${cls}" id="opt-${i}" ${handler}>
+    return `<div class="${cls}" id="opt-${i}" data-idx="${i}">
               <div class="qp-radio"></div>
               <div class="qp-opt-text">${o}</div>
             </div>`;
   }).join('');
+
+  // Wire click handlers via event listeners — no inline onclick needed
+  if (!coloured) {
+    container.querySelectorAll('.qp-option').forEach(el => {
+      el.addEventListener('click', () => selectOption(Number(el.dataset.idx)));
+    });
+  }
 }
 
 // ── Load question (play mode) ─────────────────────────────────
@@ -214,5 +220,5 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('qp-continue-btn')?.addEventListener('click', () => continueQuiz());
   document.getElementById('review-prev-btn')?.addEventListener('click', () => reviewPrev());
   document.getElementById('review-next-btn')?.addEventListener('click', () => reviewNext());
-  document.querySelector('#completion-modal .btn-outline')?.addEventListener('click', () => openReview());
+  document.getElementById('modal-review-btn')?.addEventListener('click', () => openReview());
 });

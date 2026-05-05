@@ -23,9 +23,6 @@ function quizCardHTML(q, completedIds) {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-  
-  document.getElementById('top-login-btn').addEventListener('click', () => Nav.topBarClick());
-  document.getElementById('nav-account').addEventListener('click', () => Nav.navAccount());
   await Nav.init();
 
   const grid = document.getElementById('home-latest-quizzes');
