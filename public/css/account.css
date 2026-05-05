@@ -1,0 +1,155 @@
+/* ============================================================
+   QUIZLER — account.css
+   Styles for account.html
+   ============================================================ */
+
+.account-layout {
+  display: grid;
+  grid-template-columns: 275px 1fr;
+  min-height: calc(100vh - 188px);
+  border-top: 1.5px solid var(--gray-200);
+}
+
+/* ── Sidebar ── */
+.account-sidebar { border-right: 1.5px solid var(--gray-200); padding: 28px 0; }
+
+.acct-sec { margin-bottom: 4px; }
+
+.acct-sec-hdr {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 22px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background var(--ease);
+}
+.acct-sec-hdr:hover { background: var(--gray-100); }
+.acct-sec-hdr svg  { width: 15px; height: 15px; color: var(--gray-700); }
+
+.acct-sec-chevron {
+  margin-left: auto;
+  font-size: 11px;
+  color: var(--gray-500);
+  transition: transform var(--ease);
+}
+.acct-sec-hdr.open .acct-sec-chevron { transform: rotate(180deg); }
+
+.acct-sec-items { }
+.acct-item {
+  padding: 9px 22px 9px 47px;
+  font-size: 14px;
+  cursor: pointer;
+  color: var(--gray-700);
+  transition: background var(--ease);
+}
+.acct-item:hover { background: var(--gray-100); color: var(--black); }
+.acct-item.active { color: var(--black); font-weight: 600; background: var(--gray-100); }
+
+/* ── Main content ── */
+.account-main { padding: 36px 44px; }
+
+.acct-panel { display: none; }
+.acct-panel.active { display: block; }
+
+.acct-panel-title {
+  font-family: var(--font-d);
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.acct-field-label { font-size: 13px; font-weight: 600; margin-bottom: 8px; color: var(--gray-700); }
+
+.acct-input {
+  display: block;
+  width: 340px;
+  max-width: 100%;
+  padding: 11px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-sm);
+  font-size: 14px;
+  font-family: var(--font-b);
+  margin-bottom: 12px;
+  transition: border-color var(--ease);
+}
+.acct-input:focus { border-color: var(--black); }
+
+.acct-user-type { font-size: 14px; margin: 4px 0 22px; color: var(--gray-700); }
+
+/* ── Stats cards ── */
+.acct-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.acct-stat-card {
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 16px 20px;
+  text-align: center;
+}
+.acct-stat-val {
+  font-family: var(--font-d);
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.acct-stat-lbl { font-size: 12px; color: var(--gray-500); font-weight: 600; text-transform: uppercase; letter-spacing: .06em; }
+
+/* ── Quiz History table ── */
+.hist-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.hist-controls label { font-size: 13px; font-weight: 600; color: var(--gray-700); }
+.hist-sort-select {
+  padding: 7px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-sm);
+  font-size: 13px;
+  font-family: var(--font-b);
+  background: var(--white);
+  cursor: pointer;
+}
+.hist-sort-select:focus { border-color: var(--black); outline: none; }
+
+.hist-table { width: 100%; border-collapse: separate; border-spacing: 0; border: 1.5px solid var(--border); border-radius: var(--r-lg); overflow: hidden; }
+.hist-table th {
+  background: var(--gray-100);
+  padding: 11px 14px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: var(--gray-500);
+  border-bottom: 1.5px solid var(--border);
+  cursor: pointer;
+  user-select: none;
+}
+.hist-table th:hover { color: var(--black); }
+.hist-table th .sort-arrow { margin-left: 4px; opacity: .4; }
+.hist-table th.sorted .sort-arrow { opacity: 1; }
+.hist-table td { padding: 13px 14px; font-size: 14px; border-bottom: 1px solid var(--gray-100); }
+.hist-table tr:last-child td { border-bottom: none; }
+.hist-table tr:hover td { background: var(--gray-100); }
+
+.hist-empty {
+  text-align: center;
+  padding: 36px;
+  color: var(--gray-500);
+  font-size: 14px;
+}
+
+/* ── Registration info ── */
+.acct-reg-info {
+  font-size: 13px;
+  color: var(--gray-500);
+  margin-bottom: 20px;
+}

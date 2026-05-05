@@ -1,0 +1,157 @@
+/* ============================================================
+   QUIZLER — quizzes.css
+   Styles for quizzes.html and quiz-detail.html
+   ============================================================ */
+
+/* ── Quizzes listing page ── */
+.quizzes-content  { padding: 36px 40px; }
+.quizzes-cat-title {
+  font-family: var(--font-d);
+  font-size: 26px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.search-bar { display: flex; max-width: 660px; margin: 0 auto 32px; }
+.search-bar input {
+  flex: 1;
+  padding: 12px 20px;
+  border: 2px solid var(--border);
+  border-right: none;
+  border-radius: var(--r-sm) 0 0 var(--r-sm);
+  font-size: 14px;
+  font-family: var(--font-b);
+}
+.search-bar input:focus { border-color: var(--black); }
+.search-bar button {
+  padding: 12px 22px;
+  background: var(--black);
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 600;
+  border: 2px solid var(--black);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  font-family: var(--font-b);
+  white-space: nowrap;
+}
+.search-bar button:hover { background: #1C1C1C; }
+
+.sorted-label {
+  font-family: var(--font-d);
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* ── Quiz Detail page ── */
+.qd-content { padding: 28px 40px 48px; }
+
+.qd-hero {
+  border: 2.5px solid var(--black);
+  border-radius: var(--r-2xl);
+  padding: 36px;
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 36px;
+  margin-bottom: 0;
+}
+.qd-name {
+  font-family: var(--font-d);
+  font-size: 30px;
+  font-weight: 800;
+  margin-bottom: 14px;
+  line-height: 1.2;
+}
+.qd-desc {
+  font-size: 14px;
+  color: var(--gray-700);
+  line-height: 1.75;
+  margin-bottom: 28px;
+}
+.qd-completed-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--green-bg);
+  border: 1px solid var(--green-bd);
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 50px;
+  margin-bottom: 16px;
+}
+.qd-img {
+  border: 2px solid var(--border);
+  border-radius: var(--r-lg);
+  min-height: 190px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-500);
+  font-size: 13px;
+  text-align: center;
+  background: var(--gray-100);
+  padding: 16px;
+}
+
+.qd-stats {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  border: 1.5px solid var(--border);
+  margin-bottom: 28px;
+}
+.qd-stat { padding: 15px 18px; border-right: 1.5px solid var(--border); text-align: center; }
+.qd-stat:last-child { border-right: none; }
+.qd-stat-lbl { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--gray-500); margin-bottom: 5px; }
+.qd-stat-val { font-size: 14px; font-weight: 600; }
+
+/* ── Quiz detail leaderboard card ── */
+.qd-lb-card { border: 2px solid var(--border); border-radius: var(--r-2xl); padding: 28px; }
+.qd-lb-head {
+  display: grid;
+  grid-template-columns: 56px 1fr 110px;
+  padding: 0 8px 12px;
+  border-bottom: 1.5px solid var(--gray-200);
+  margin-bottom: 4px;
+}
+.qd-lb-hcell { font-size: 11px; font-weight: 700; color: var(--gray-500); text-transform: uppercase; letter-spacing: .07em; }
+.qd-lb-hcell:last-child { text-align: right; }
+
+.qd-lb-row {
+  display: grid;
+  grid-template-columns: 56px 1fr 110px;
+  align-items: center;
+  padding: 9px 8px;
+  border-radius: var(--r-sm);
+  transition: background var(--ease);
+}
+.qd-lb-row:hover { background: var(--gray-100); }
+.qd-lb-row.is-me { background: #F0F0E8; font-weight: 600; }
+
+.qd-lb-rank  { display: flex; align-items: center; gap: 4px; font-size: 13px; font-weight: 700; }
+.qd-lb-user  { display: flex; align-items: center; gap: 9px; }
+.qd-lb-bar   {
+  flex: 1;
+  height: 34px;
+  background: var(--gray-100);
+  border-radius: 50px;
+  border: 1.5px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.qd-lb-score { text-align: right; font-family: var(--font-d); font-size: 14px; font-weight: 700; }
+.qd-lb-bottom { display: flex; justify-content: center; margin-top: 20px; }
+
+/* ── No results ── */
+.no-results {
+  text-align: center;
+  padding: 48px;
+  color: var(--gray-500);
+  font-size: 15px;
+}

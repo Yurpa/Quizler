@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin – Quizler</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <button class="top-bar-btn" id="top-login-btn" onclick="Nav.topBarClick()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+      <circle cx="12" cy="7" r="4"/>
+    </svg>
+    <span id="top-login-label">Login</span>
+  </button>
+</div>
+
+<!-- MAIN NAV -->
+<nav class="main-nav">
+  <a class="nav-logo" href="index.html">
+    <svg viewBox="0 0 40 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20 2L37 33H3L20 2Z" stroke="#0A0A0A" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
+      <path d="M20 13L29 30H11L20 13Z" stroke="#0A0A0A" stroke-width="2" fill="none" stroke-linejoin="round"/>
+    </svg>
+    Quizler
+  </a>
+  <ul class="nav-links">
+    <li><a class="nav-link" id="nav-leaderboards" href="leaderboards.html">Leaderboards</a></li>
+    <li><a class="nav-link" id="nav-account" href="javascript:void(0)" onclick="Nav.navAccount()">My Account</a></li>
+    <li style="position:relative">
+      <div class="nav-link" id="nav-quizzes" onclick="Nav.toggleDropdown()">
+        Quizzes
+        <svg viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 1l5 5 5-5"/></svg>
+      </div>
+      <div class="nav-dropdown" id="quiz-dropdown">
+        <div class="nav-dropdown-label">Categories:</div>
+        <div id="quiz-dropdown-items"></div>
+      </div>
+    </li>
+    <li id="nav-admin-wrap" style="display:none">
+      <a class="nav-link admin-link" id="nav-admin" href="admin.html">⚙ Admin</a>
+    </li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- Access denied (shown to non-admins) -->
+  <div class="access-denied" id="access-denied" style="display:none">
+    <h2>Access Denied</h2>
+    <p>Admin privileges are required to view this page.</p>
+    <a class="btn btn-primary" href="index.html">Go Home</a>
+  </div>
+
+  <!-- Admin content (shown to admins only) -->
+  <div class="admin-content" id="admin-content">
+    <div class="admin-page-title">Quiz Management</div>
+    <div class="admin-page-sub">Create, edit, and delete quizzes. Only admins can access this page.</div>
+
+    <!-- Feedback messages -->
+    <div class="msg msg-success" id="admin-form-success" style="max-width:600px"></div>
+    <div class="msg msg-error"   id="admin-form-error"   style="max-width:600px"></div>
+
+    <!-- Action bar -->
+    <div style="display:flex;justify-content:flex-end;margin-bottom:20px;">
+      <button class="btn btn-primary" onclick="openCreateForm()">+ Create New Quiz</button>
+    </div>
+
+    <!-- Quiz list -->
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th style="width:48px">ID</th>
+          <th>Title</th>
+          <th>Category</th>
+          <th>Difficulty</th>
+          <th style="width:80px"># Qs</th>
+          <th style="width:140px">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="admin-quiz-tbody"></tbody>
+    </table>
+
+    <!-- Create / Edit form (hidden by default) -->
+    <div class="admin-form-wrap" id="admin-form-wrap">
+      <div class="admin-form-title" id="admin-form-title">Create New Quiz</div>
+
+      <!-- Quiz meta -->
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-bottom:24px;">
+        <div class="admin-form-group">
+          <label class="admin-form-label" for="form-title">Quiz Title <span style="color:var(--red)">*</span></label>
+          <input class="admin-input" id="form-title" type="text" placeholder="e.g. Algebra Fundamentals">
+        </div>
+        <div class="admin-form-group">
+          <label class="admin-form-label" for="form-category">Category <span style="color:var(--red)">*</span></label>
+          <select class="admin-select" id="form-category">
+            <option value="">Select a category…</option>
+            <!-- Populated by JS -->
+          </select>
+        </div>
+        <div class="admin-form-group">
+          <label class="admin-form-label" for="form-difficulty">Difficulty <span style="color:var(--red)">*</span></label>
+          <select class="admin-select" id="form-difficulty">
+            <option value="">Select difficulty…</option>
+            <option value="Easy">Easy (×0.75, 30s/q)</option>
+            <option value="Normal">Normal (×1.0, 45s/q)</option>
+            <option value="Hard">Hard (×1.5, 60s/q)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Questions -->
+      <div class="questions-block">
+        <div class="questions-block-title">Questions</div>
+        <div id="questions-container"></div>
+        <button class="add-question-btn" onclick="addQuestion()" type="button">+ Add Question</button>
+      </div>
+
+      <!-- Form actions -->
+      <div class="admin-form-actions">
+        <button class="btn btn-primary" onclick="saveQuiz()"  type="button">Save Quiz</button>
+        <button class="btn btn-outline" onclick="cancelForm()" type="button">Cancel</button>
+      </div>
+    </div><!-- /admin-form-wrap -->
+
+  </div><!-- /admin-content -->
+</main>
+
+<footer class="site-footer"><span>© 2025 Quizler – Educational Quiz Platform</span></footer>
+
+
+<script src="js/api.js"></script>
+<script src="js/state.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/admin.js"></script>
+<script>
+  // Populate category dropdown after data is loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    const sel = document.getElementById('form-category');
+    if (sel) {
+      CATEGORIES.forEach(c => {
+        const opt = document.createElement('option');
+        opt.value       = c.id;
+        opt.textContent = c.name;
+        sel.appendChild(opt);
+      });
+    }
+  });
+</script>
+</body>
+</html>
