@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leaderboards – Quizler</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/leaderboards.css">
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <button class="top-bar-btn" id="top-login-btn" onclick="Nav.topBarClick()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+      <circle cx="12" cy="7" r="4"/>
+    </svg>
+    <span id="top-login-label">Login</span>
+  </button>
+</div>
+
+<!-- MAIN NAV -->
+<nav class="main-nav">
+  <a class="nav-logo" href="index.html">
+    <svg viewBox="0 0 40 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20 2L37 33H3L20 2Z" stroke="#0A0A0A" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
+      <path d="M20 13L29 30H11L20 13Z" stroke="#0A0A0A" stroke-width="2" fill="none" stroke-linejoin="round"/>
+    </svg>
+    Quizler
+  </a>
+  <ul class="nav-links">
+    <li><a class="nav-link" id="nav-leaderboards" href="leaderboards.html">Leaderboards</a></li>
+    <li><a class="nav-link" id="nav-account" href="javascript:void(0)" onclick="Nav.navAccount()">My Account</a></li>
+    <li style="position:relative">
+      <div class="nav-link" id="nav-quizzes" onclick="Nav.toggleDropdown()">
+        Quizzes
+        <svg viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 1l5 5 5-5"/></svg>
+      </div>
+      <div class="nav-dropdown" id="quiz-dropdown">
+        <div class="nav-dropdown-label">Categories:</div>
+        <div id="quiz-dropdown-items"></div>
+      </div>
+    </li>
+    <li id="nav-admin-wrap" style="display:none">
+      <a class="nav-link admin-link" id="nav-admin" href="admin.html">⚙ Admin</a>
+    </li>
+  </ul>
+</nav>
+
+<main>
+  <div class="leaderboards-content">
+    <div class="lb-page-title">Leaderboards</div>
+
+    <!-- Tab bar -->
+    <div class="lb-tabs">
+      <div class="lb-tab active" onclick="lbTab(this,'lb-global')">Global</div>
+      <div class="lb-tab"        onclick="lbTab(this,'lb-categories')">Categories</div>
+      <div class="lb-tab"        onclick="lbTab(this,'lb-individual')">Individual Quiz</div>
+    </div>
+
+    <!-- Global panel -->
+    <div class="lb-panel active" id="lb-global">
+      <div class="my-rank-banner" id="global-rank-banner"></div>
+      <table class="lb-table">
+        <thead>
+          <tr>
+            <th style="width:60px">Rank</th>
+            <th>User</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody id="lb-global-body"></tbody>
+      </table>
+    </div>
+
+    <!-- Categories panel -->
+    <div class="lb-panel" id="lb-categories">
+      <div class="carousel-wrap">
+        <button class="carousel-btn" id="cat-prev-btn" onclick="carouselPrev('cat')">&#8249;&#8249;</button>
+        <div class="carousel-track" id="cat-carousel"></div>
+        <button class="carousel-btn" id="cat-next-btn" onclick="carouselNext('cat')">&#8250;&#8250;</button>
+      </div>
+      <div class="lb-cat-detail" id="cat-lb-detail">
+        <div class="lb-cat-detail-title" id="cat-lb-detail-title"></div>
+        <table class="lb-table">
+          <thead><tr><th style="width:60px">Rank</th><th>User</th><th>Score</th></tr></thead>
+          <tbody id="cat-lb-body"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Individual Quiz panel -->
+    <div class="lb-panel" id="lb-individual">
+      <div class="carousel-wrap">
+        <button class="carousel-btn" id="quiz-prev-btn" onclick="carouselPrev('quiz')">&#8249;&#8249;</button>
+        <div class="carousel-track" id="quiz-carousel"></div>
+        <button class="carousel-btn" id="quiz-next-btn" onclick="carouselNext('quiz')">&#8250;&#8250;</button>
+      </div>
+      <div class="lb-cat-detail" id="quiz-lb-detail">
+        <div class="lb-cat-detail-title" id="quiz-lb-detail-title"></div>
+        <table class="lb-table">
+          <thead><tr><th style="width:60px">Rank</th><th>User</th><th>Score</th></tr></thead>
+          <tbody id="quiz-lb-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer"><span>© 2025 Quizler – Educational Quiz Platform</span></footer>
+
+<script src="js/db.js"></script>
+<script src="js/state.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/leaderboards.js"></script>
+</body>
+</html>

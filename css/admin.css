@@ -1,0 +1,127 @@
+/* ============================================================
+   QUIZLER — admin.css
+   Styles for admin.html
+   ============================================================ */
+
+.admin-content { padding: 36px 40px 60px; }
+
+.admin-page-title {
+  font-family: var(--font-d);
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.admin-page-sub { font-size: 14px; color: var(--gray-500); margin-bottom: 32px; }
+
+/* ── Quiz list table ── */
+.admin-table { width: 100%; border-collapse: separate; border-spacing: 0; border: 1.5px solid var(--border); border-radius: var(--r-lg); overflow: hidden; margin-bottom: 32px; }
+.admin-table th {
+  background: var(--gray-100);
+  padding: 11px 14px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: var(--gray-500);
+  border-bottom: 1.5px solid var(--border);
+}
+.admin-table td { padding: 13px 14px; font-size: 14px; border-bottom: 1px solid var(--gray-100); vertical-align: middle; }
+.admin-table tr:last-child td { border-bottom: none; }
+.admin-table tr:hover td { background: var(--gray-100); }
+.admin-table .actions-cell { display: flex; gap: 8px; }
+
+/* ── Create / Edit form ── */
+.admin-form-wrap {
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-2xl);
+  padding: 36px;
+  margin-bottom: 36px;
+  display: none;
+}
+.admin-form-wrap.show { display: block; }
+.admin-form-title {
+  font-family: var(--font-d);
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.admin-input {
+  width: 100%;
+  padding: 11px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-sm);
+  font-size: 14px;
+  font-family: var(--font-b);
+  background: var(--white);
+  color: var(--black);
+  transition: border-color var(--ease);
+}
+.admin-input:focus { border-color: var(--black); outline: none; }
+
+.admin-select {
+  width: 100%;
+  padding: 11px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-sm);
+  font-size: 14px;
+  font-family: var(--font-b);
+  background: var(--white);
+  cursor: pointer;
+}
+.admin-select:focus { border-color: var(--black); outline: none; }
+
+.admin-form-group { margin-bottom: 18px; }
+.admin-form-label { font-size: 13px; font-weight: 600; color: var(--gray-700); margin-bottom: 6px; display: block; }
+
+/* ── Questions block ── */
+.questions-block { margin-top: 28px; }
+.questions-block-title { font-family: var(--font-d); font-size: 18px; font-weight: 700; margin-bottom: 16px; }
+.question-item {
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 20px;
+  margin-bottom: 16px;
+  position: relative;
+}
+.question-item-head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.question-num { font-weight: 700; font-size: 13px; color: var(--gray-500); flex-shrink: 0; }
+.question-remove { margin-left: auto; }
+
+.answer-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.answer-row input[type="radio"] { flex-shrink: 0; cursor: pointer; }
+.answer-row .admin-input { flex: 1; }
+.answer-row label { font-size: 12px; color: var(--gray-500); white-space: nowrap; }
+
+.add-option-btn { font-size: 13px; color: var(--gray-500); cursor: pointer; text-decoration: underline; margin-top: 6px; background: none; border: none; padding: 0; font-family: var(--font-b); }
+.add-option-btn:hover { color: var(--black); }
+
+.add-question-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border: 2px dashed var(--border);
+  border-radius: var(--r-lg);
+  cursor: pointer;
+  color: var(--gray-500);
+  font-size: 14px;
+  font-weight: 600;
+  font-family: var(--font-b);
+  background: none;
+  width: 100%;
+  justify-content: center;
+  transition: all var(--ease);
+}
+.add-question-btn:hover { border-color: var(--black); color: var(--black); }
+
+.admin-form-actions { display: flex; gap: 12px; margin-top: 28px; }
+
+/* ── Access denied ── */
+.access-denied {
+  text-align: center;
+  padding: 80px 40px;
+}
+.access-denied h2 { font-family: var(--font-d); font-size: 28px; font-weight: 700; margin-bottom: 12px; }
+.access-denied p  { font-size: 15px; color: var(--gray-500); margin-bottom: 24px; }

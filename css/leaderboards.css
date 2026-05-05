@@ -1,0 +1,125 @@
+/* ============================================================
+   QUIZLER — leaderboards.css
+   Styles for leaderboards.html
+   ============================================================ */
+
+.leaderboards-content { padding: 44px 40px; }
+
+.lb-page-title {
+  font-family: var(--font-d);
+  font-size: 38px;
+  font-weight: 700;
+  margin-bottom: 22px;
+}
+
+/* ── Tabs ── */
+.lb-tabs {
+  display: flex;
+  border-bottom: 2px solid var(--gray-200);
+  margin-bottom: 36px;
+}
+.lb-tab {
+  padding: 11px 22px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  color: var(--gray-500);
+  border-bottom: 2.5px solid transparent;
+  margin-bottom: -2px;
+  transition: all var(--ease);
+}
+.lb-tab:hover { color: var(--black); }
+.lb-tab.active { color: var(--black); border-bottom-color: var(--black); font-weight: 600; }
+
+/* ── Panels ── */
+.lb-panel { display: none; }
+.lb-panel.active { display: block; }
+
+/* ── Table ── */
+.lb-table { width: 100%; border-collapse: separate; border-spacing: 0; }
+.lb-table th {
+  text-align: left;
+  padding: 10px 14px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: var(--gray-500);
+  border-bottom: 1.5px solid var(--gray-200);
+}
+.lb-table td {
+  padding: 13px 14px;
+  font-size: 14px;
+  border-bottom: 1px solid var(--gray-100);
+  vertical-align: middle;
+}
+.lb-table tr:last-child td { border-bottom: none; }
+.lb-table tr:hover td { background: var(--gray-100); }
+.lb-table tr.is-me td { background: #F0F0E8; font-weight: 600; }
+
+/* ── Carousel ── */
+.carousel-wrap { display: flex; align-items: center; gap: 16px; }
+.carousel-btn {
+  background: none;
+  border: 2px solid var(--border);
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  font-size: 17px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-700);
+  transition: all var(--ease);
+  flex-shrink: 0;
+}
+.carousel-btn:hover { border-color: var(--black); color: var(--black); }
+.carousel-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+.carousel-btn:disabled:hover { border-color: var(--border); color: var(--gray-700); }
+.carousel-track { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; flex: 1; }
+
+.lb-cat-card {
+  border: 2.5px solid var(--black);
+  border-radius: var(--r-2xl);
+  padding: 36px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--ease);
+  min-height: 190px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.lb-cat-card:hover,
+.lb-cat-card.selected { background: var(--black); color: var(--white); transform: translateY(-3px); box-shadow: var(--shadow-md); }
+
+.lb-cat-name { font-family: var(--font-d); font-size: 19px; font-weight: 700; line-height: 1.2; }
+.lb-cat-sub  { font-size: 12px; opacity: .55; margin-top: 4px; }
+
+.lb-cat-detail {
+  margin-top: 36px;
+  padding: 28px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-lg);
+  display: none;
+}
+.lb-cat-detail.show { display: block; }
+.lb-cat-detail-title { font-family: var(--font-d); font-size: 20px; font-weight: 700; margin-bottom: 18px; }
+
+/* ── My rank banner ── */
+.my-rank-banner {
+  display: none;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 18px;
+  background: var(--gray-100);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-md);
+  margin-bottom: 18px;
+  font-size: 14px;
+}
+.my-rank-banner.show { display: flex; }
+.my-rank-banner strong { font-family: var(--font-d); font-size: 18px; }
