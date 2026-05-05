@@ -82,16 +82,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(dirname, 'public')));
 
 // SPA fallback: only for non-API, non-.html paths
+app.use(express.static(path.resolve('public')));
+
+// SPA fallback
+app.use(express.static(path.resolve('public')));
+
+// SPA fallback
 app.get('*', (req, res) => {
   if (req.path.startsWith('/api')) {
     return res.status(404).json({ error: 'API route not found.' });
   }
-  // If the path looks like a real file (has an extension), don't override it
   if (path.extname(req.path)) {
     return res.status(404).send('Not found.');
   }
-  // True SPA fallback for extensionless routes
-  res.sendFile(path.join(dirname, 'public', 'index.html'));
+  res.sendFile(path.resolve('public', 'index.html'));
 });
 
 // ── Global error handler ──────────────────────────────────────
