@@ -13,7 +13,7 @@ services:
     plan: free                     # upgrade to starter ($7/mo) for persistent storage
     buildCommand: npm install
     startCommand: node server.js
-    healthCheckPath: /api/auth/me  # returns 401 (not 404) — proves the app is alive
+    healthCheckPath: /api/health   # always 200 OK
 
     envVars:
       - key: NODE_ENV
