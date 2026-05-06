@@ -18,8 +18,7 @@ function quizCardHTML(q, completedIds) {
           <strong>Category:</strong> ${q.category}<br>
           <strong>Difficulty:</strong> ${q.difficulty} (×${q.multiplier})<br>
           <strong>Language:</strong> ${q.language} &nbsp;
-          <strong>Time/Q:</strong> ${q.timePerQ}s<br>
-          <strong>Completed:</strong> ${q.completedCount} times
+          <strong>Time/Q:</strong> ${q.timePerQ}s
         </div>
       </div>
       ${done ? '<span class="quiz-card-completed">✓ Done</span>' : ''}
