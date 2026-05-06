@@ -109,6 +109,29 @@
 .lb-cat-detail.show { display: block; }
 .lb-cat-detail-title { font-family: var(--font-d); font-size: 20px; font-weight: 700; margin-bottom: 18px; }
 
+/* ── Rank-gap separator ── */
+.lb-separator-row td {
+  padding: 0;
+  border-bottom: none;
+  border-top: none;
+  background: none;
+  text-align: center;
+}
+.lb-ellipsis {
+  display: block;
+  line-height: 1;
+  padding: 8px 0;
+  font-size: 20px;
+  letter-spacing: 8px;
+  color: var(--gray-400, #bbb);
+  background: var(--gray-100, #f5f5f5);
+  border-top: 1px dashed var(--gray-200, #e0e0e0);
+  border-bottom: 1px dashed var(--gray-200, #e0e0e0);
+  user-select: none;
+  cursor: default;
+}
+.lb-table tr.lb-separator-row:hover td { background: none; }
+
 /* ── My rank banner ── */
 .my-rank-banner {
   display: none;

@@ -40,12 +40,37 @@ async function renderGlobalLeaderboard() {
   tbody.innerHTML = '<tr><td colspan="3" style="padding:18px;color:var(--gray-500)">Loading…</td></tr>';
 
   try {
-    const board    = await API.getGlobalLeaderboard();
+    const board    = await API.getGlobalLeaderboard(); // flat array
     const username = user?.username;
-    tbody.innerHTML = lbRows(board, username);
+
+    if (!board || board.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="3" style="padding:18px;color:var(--gray-500);text-align:center">No entries yet.</td></tr>';
+    } else {
+      let html = '';
+      for (let i = 0; i < board.length; i++) {
+        // Insert "..." separator whenever there is a rank gap between rows
+        if (i > 0 && Number(board[i].rank) - Number(board[i - 1].rank) > 1) {
+          const hiddenFrom = Number(board[i - 1].rank) + 1;
+          const hiddenTo   = Number(board[i].rank) - 1;
+          html += `<tr class="lb-separator-row">
+            <td colspan="3" style="padding:0">
+              <span class="lb-ellipsis" title="Ranks ${hiddenFrom}–${hiddenTo} not shown">• • •</span>
+            </td>
+          </tr>`;
+        }
+        const e    = board[i];
+        const isMe = username && e.user === username;
+        html += `<tr class="${isMe ? 'is-me' : ''}">
+          <td><span class="rank-badge">${rankIcon(e.rank)}</span></td>
+          <td><div class="lb-user-cell">${avatarHTML(e.user, isMe)}<span>${e.user}${isMe ? ' <strong>(You)</strong>' : ''}</span></div></td>
+          <td class="lb-score">${Number(e.score).toLocaleString()}</td>
+        </tr>`;
+      }
+      tbody.innerHTML = html;
+    }
 
     if (banner && user) {
-      const me = board.find(e => e.user === username);
+      const me = board && board.find(e => e.user === username);
       banner.innerHTML = me
         ? `Your global rank: <strong>#${me.rank}</strong> — ${Number(user.total_points || user.totalPoints || 0).toLocaleString()} total points`
         : 'Complete quizzes to appear on the global leaderboard!';
