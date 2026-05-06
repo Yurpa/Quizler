@@ -123,3 +123,4 @@ quizler/
 | GET | /api/profile | User profile + stats |
 | PATCH | /api/profile | Update email or password |
 | GET | /api/profile/history  | Quiz attempt history |
+| GET | /api/admin/quizzes  | All quizzes (admin view) |
