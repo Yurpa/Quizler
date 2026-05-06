@@ -105,22 +105,3 @@ quizler/
 └── .gitignore
 ```
 
-## API reference (summary)
-
-| Method | Path | Description |
-|---|---|---|
-| POST | /api/auth/register | Create account |
-| POST | /api/auth/login | Login, returns JWT |
-| POST | /api/auth/logout  | Logout |
-| GET | /api/auth/me  | Refresh user profile |
-| GET | /api/categories  | All categories with quiz counts |
-| GET | /api/quizzes | All quizzes (optional ?cat=) |
-| GET | /api/quizzes/:id | Single quiz with questions |
-| POST | /api/attempts | Submit quiz, returns score |
-| GET | /api/leaderboard/global  | Global leaderboard |
-| GET | /api/leaderboard/category/:id  | Category leaderboard |
-| GET | /api/leaderboard/quiz/:id  | Per-quiz leaderboard |
-| GET | /api/profile | User profile + stats |
-| PATCH | /api/profile | Update email or password |
-| GET | /api/profile/history  | Quiz attempt history |
-| GET | /api/admin/quizzes  | All quizzes (admin view) |
