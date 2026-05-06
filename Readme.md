@@ -108,7 +108,7 @@ quizler/
 ## API reference (summary)
 
 | Method | Path | Description |
-|---|---|---|---|
+|---|---|---|
 | POST | /api/auth/register | Create account |
 | POST | /api/auth/login | Login, returns JWT |
 | POST | /api/auth/logout  | Logout |
