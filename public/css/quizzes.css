@@ -100,10 +100,13 @@
 .qd-stats {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  border: 1.5px solid var(--border);
+  border: 2px solid var(--border);
+  border-radius: var(--r-2xl);
+  overflow: hidden;
+  margin-top: 28px;
   margin-bottom: 28px;
 }
-.qd-stat { padding: 15px 18px; border-right: 1.5px solid var(--border); text-align: center; }
+.qd-stat { padding: 15px 18px; border-right: 2px solid var(--border); text-align: center; }
 .qd-stat:last-child { border-right: none; }
 .qd-stat-lbl { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--gray-500); margin-bottom: 5px; }
 .qd-stat-val { font-size: 14px; font-weight: 600; }
