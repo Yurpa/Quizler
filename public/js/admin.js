@@ -1,6 +1,8 @@
 /* ============================================================
    QUIZLER — public/js/admin.js
    Admin dashboard: quiz CRUD via API.
+   All interactions use addEventListener / event delegation —
+   no inline onclick attributes anywhere.
    ============================================================ */
 
 let _adminQuizzes = [];
@@ -30,8 +32,54 @@ async function initAdminPage() {
         cats.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
     }
   } catch { /* ignore */ }
+
+  bindStaticButtons();
+  bindTableDelegation();
+  bindQuestionsDelegation();
 }
 
+// ── Static button bindings (buttons always present in the DOM) ──
+function bindStaticButtons() {
+  document.getElementById('create-quiz-btn')
+    ?.addEventListener('click', openCreateForm);
+
+  document.getElementById('add-question-btn')
+    ?.addEventListener('click', () => addQuestion());
+
+  document.getElementById('save-quiz-btn')
+    ?.addEventListener('click', saveQuiz);
+
+  document.getElementById('cancel-form-btn')
+    ?.addEventListener('click', cancelForm);
+}
+
+// ── Event delegation: quiz table (Edit / Delete) ──────────────
+function bindTableDelegation() {
+  const tbody = document.getElementById('admin-quiz-tbody');
+  if (!tbody) return;
+  tbody.addEventListener('click', e => {
+    const btn = e.target.closest('button[data-action]');
+    if (!btn) return;
+    const quizId = parseInt(btn.dataset.id);
+    if (btn.dataset.action === 'edit')   openEditForm(quizId);
+    if (btn.dataset.action === 'delete') deleteQuiz(quizId);
+  });
+}
+
+// ── Event delegation: questions container (Remove / Add option) ──
+function bindQuestionsDelegation() {
+  const container = document.getElementById('questions-container');
+  if (!container) return;
+  container.addEventListener('click', e => {
+    const btn = e.target.closest('button[data-action]');
+    if (!btn) return;
+    const num = parseInt(btn.dataset.num);
+    if (btn.dataset.action === 'remove-question') removeQuestion(num);
+    if (btn.dataset.action === 'add-option')      addOption(num);
+  });
+}
+
+// ── Load & render ─────────────────────────────────────────────
 async function loadAdminQuizzes() {
   const tbody = document.getElementById('admin-quiz-tbody');
   if (!tbody) return;
@@ -56,8 +104,8 @@ function renderQuizTable() {
       <td>${(q.questions || []).length}</td>
       <td>
         <div class="actions-cell">
-          <button class="btn btn-sm btn-outline" onclick="openEditForm(${q.id})">Edit</button>
-          <button class="btn btn-sm btn-danger"  onclick="deleteQuiz(${q.id})">Delete</button>
+          <button class="btn btn-sm btn-outline" data-action="edit"   data-id="${q.id}">Edit</button>
+          <button class="btn btn-sm btn-danger"  data-action="delete" data-id="${q.id}">Delete</button>
         </div>
       </td>
     </tr>`).join('');
@@ -116,7 +164,8 @@ function addQuestion(existing = null) {
   div.innerHTML = `
     <div class="question-item-head">
       <span class="question-num">Question ${num}</span>
-      <button class="btn btn-sm btn-danger question-remove" onclick="removeQuestion(${num})" type="button">Remove</button>
+      <button class="btn btn-sm btn-danger question-remove"
+              data-action="remove-question" data-num="${num}" type="button">Remove</button>
     </div>
     <div class="admin-form-group">
       <label class="admin-form-label">Question Text</label>
@@ -124,7 +173,7 @@ function addQuestion(existing = null) {
     </div>
     <div class="admin-form-label">Answer Options <span style="color:var(--gray-500);font-weight:400">(select the correct one)</span></div>
     <div id="q${num}-options">${opts.map((o, i) => answerRowHTML(num, i, o, i === ci)).join('')}</div>
-    <button class="add-option-btn" onclick="addOption(${num})" type="button">+ Add option</button>`;
+    <button class="add-option-btn" data-action="add-option" data-num="${num}" type="button">+ Add option</button>`;
   document.getElementById('questions-container').appendChild(div);
 }
 
@@ -171,7 +220,7 @@ async function saveQuiz() {
     const qNum = m[1];
     const text = document.getElementById(`q${qNum}-text`)?.value.trim() || '';
     if (!text) { return _adminErr(err, 'Each question must have question text.'); }
-    const optEls = qEl.querySelectorAll('[id^="q' + qNum + '-opt-"]');
+    const optEls = qEl.querySelectorAll('input[id^="q' + qNum + '-opt-"]');
     const opts   = [...optEls].map(i => i.value.trim()).filter(Boolean);
     if (opts.length < 2) { return _adminErr(err, 'Each question must have between 2 and 6 answer options.'); }
     const radio   = qEl.querySelector(`input[name="q${qNum}-correct"]:checked`);

@@ -67,7 +67,7 @@
 
     <!-- Action bar -->
     <div style="display:flex;justify-content:flex-end;margin-bottom:20px;">
-      <button class="btn btn-primary" onclick="openCreateForm()">+ Create New Quiz</button>
+      <button class="btn btn-primary" id="create-quiz-btn">+ Create New Quiz</button>
     </div>
 
     <!-- Quiz list -->
@@ -117,13 +117,13 @@
       <div class="questions-block">
         <div class="questions-block-title">Questions</div>
         <div id="questions-container"></div>
-        <button class="add-question-btn" onclick="addQuestion()" type="button">+ Add Question</button>
+        <button class="add-question-btn" id="add-question-btn" type="button">+ Add Question</button>
       </div>
 
       <!-- Form actions -->
       <div class="admin-form-actions">
-        <button class="btn btn-primary" onclick="saveQuiz()"  type="button">Save Quiz</button>
-        <button class="btn btn-outline" onclick="cancelForm()" type="button">Cancel</button>
+        <button class="btn btn-primary" id="save-quiz-btn"   type="button">Save Quiz</button>
+        <button class="btn btn-outline" id="cancel-form-btn" type="button">Cancel</button>
       </div>
     </div><!-- /admin-form-wrap -->
 
@@ -137,19 +137,6 @@
 <script src="js/state.js"></script>
 <script src="js/nav.js"></script>
 <script src="js/admin.js"></script>
-<script>
-  // Populate category dropdown after data is loaded
-  document.addEventListener('DOMContentLoaded', () => {
-    const sel = document.getElementById('form-category');
-    if (sel) {
-      CATEGORIES.forEach(c => {
-        const opt = document.createElement('option');
-        opt.value       = c.id;
-        opt.textContent = c.name;
-        sel.appendChild(opt);
-      });
-    }
-  });
-</script>
+
 </body>
 </html>
