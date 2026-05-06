@@ -120,7 +120,13 @@ input, select { font-family: var(--font-b); outline: none; }
   text-decoration: none;
   color: var(--black);
 }
-.nav-logo svg { width: 36px; height: 36px; }
+.nav-logo-img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
+}
 
 .nav-links { display: flex; list-style: none; }
 .nav-links > li { position: relative; }
